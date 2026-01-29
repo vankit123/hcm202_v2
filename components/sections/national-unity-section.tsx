@@ -6,26 +6,11 @@ import { VietnamMap } from "../vietnam-map";
 import { Factory, Wheat, BookOpen } from "lucide-react";
 import { FloatingParticles } from "../animated/floating-particles";
 import { OrbitingElements } from "../animated/orbiting-elements";
-const allianceItems = [
-  {
-    icon: Factory,
-    label: "Công nhân",
-    region: "Bắc",
-    position: "top-[15%] left-1/2 -translate-x-1/2",
-  },
-  {
-    icon: Wheat,
-    label: "Nông dân",
-    region: "Trung",
-    position: "top-[45%] left-1/2 -translate-x-1/2",
-  },
-  {
-    icon: BookOpen,
-    label: "Trí thức",
-    region: "Nam",
-    position: "top-[75%] left-1/2 -translate-x-1/2",
-  },
-];
+import { AnimatedBackground } from "../animated/animated-background";
+import { FlowingLines } from "../animated/flowing-lines";
+import { PulseRings } from "../animated/pulse-rings";
+import { RisingParticles } from "../animated/rising-particles";
+
 
 export function NationalUnitySection() {
   return (
@@ -51,6 +36,20 @@ export function NationalUnitySection() {
 
       {/* Background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/5 via-transparent to-transparent" />
+
+      {/* Animated Background - Geometric shapes */}
+      <AnimatedBackground variant="geometric" color="gold" intensity="low" />
+
+      {/* Flowing Lines */}
+      <div className="absolute inset-0 opacity-40">
+        <FlowingLines color="gold" direction="diagonal" count={6} />
+      </div>
+
+      {/* Pulse Rings - Bottom right */}
+      <PulseRings color="gold" position="bottom-right" size="large" />
+
+      {/* Rising Particles */}
+      <RisingParticles color="gold" count={20} speed="slow" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2
@@ -88,27 +87,7 @@ export function NationalUnitySection() {
               showRegions={true}
             />
 
-            {/* Alliance icons overlay */}
-            {allianceItems.map((item, index) => (
-              <motion.div
-                key={item.label}
-                className={`absolute ${item.position} flex flex-col items-center`}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.2 }}
-              >
-                <div className="bg-card/90 backdrop-blur border border-gold/50 rounded-full p-3 shadow-[0_0_20px_rgba(212,168,83,0.3)]">
-                  <item.icon className="w-6 h-6 text-gold" />
-                </div>
-                <span className="mt-2 text-sm text-gold font-medium">
-                  {item.label}
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  ({item.region})
-                </span>
-              </motion.div>
-            ))}
+         
 
             {/* Glowing unity layer */}
             <motion.div

@@ -5,6 +5,10 @@ import Image from "next/image";
 import { Heart, Shield, Globe, Users, Sparkles } from "lucide-react";
 import { FloatingParticles } from "../animated/floating-particles";
 import { GlowOrbs } from "../animated/glow-orbs";
+import { AnimatedBackground } from "../animated/animated-background";
+import { FlowingLines } from "../animated/flowing-lines";
+import { PulseRings } from "../animated/pulse-rings";
+import { RisingParticles } from "../animated/rising-particles";
 const principle1Items = [
   { icon: Heart, text: "Tôn trọng độc lập và chủ quyền" },
   { icon: Shield, text: "Hòa bình trong công lý" },
@@ -33,6 +37,20 @@ export function PrinciplesSection() {
 
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red/5 via-transparent to-transparent" />
+
+      {/* Animated Background - Grid */}
+      <AnimatedBackground variant="grid" color="red" intensity="low" />
+
+      {/* Flowing Lines */}
+      <div className="absolute inset-0 opacity-30">
+        <FlowingLines color="red" direction="vertical" count={6} />
+      </div>
+
+      {/* Pulse Rings */}
+      <PulseRings color="red" position="top-left" size="medium" className="opacity-30" />
+
+      {/* Rising Particles */}
+      <RisingParticles color="red" count={20} speed="slow" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2

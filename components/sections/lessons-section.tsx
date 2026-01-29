@@ -11,6 +11,10 @@ import {
 } from "lucide-react";
 import { FloatingParticles } from "../animated/floating-particles";
 import { FloatingIcons } from "../animated/floating-icons";
+import { AnimatedBackground } from "../animated/animated-background";
+import { FlowingLines } from "../animated/flowing-lines";
+import { PulseRings } from "../animated/pulse-rings";
+import { RisingParticles } from "../animated/rising-particles";
 
 const lessons = [
   {
@@ -62,6 +66,20 @@ export function LessonsSection() {
 
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red/5 via-transparent to-transparent" />
+
+      {/* Animated Background - Geometric */}
+      <AnimatedBackground variant="geometric" color="mixed" intensity="low" />
+
+      {/* Flowing Lines */}
+      <div className="absolute inset-0 opacity-30">
+        <FlowingLines color="mixed" direction="diagonal" count={8} />
+      </div>
+
+      {/* Pulse Rings */}
+      <PulseRings color="red" position="center" size="large" className="opacity-20" />
+
+      {/* Rising Particles */}
+      <RisingParticles color="mixed" count={25} speed="slow" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2

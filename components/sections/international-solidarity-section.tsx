@@ -6,6 +6,11 @@ import Image from "next/image";
 import { AnimatedConnections } from "../animated/animated-connections";
 import { FloatingParticles } from "../animated/floating-particles";
 import { WorldMap } from "../world-map";
+import { AnimatedBackground } from "../animated/animated-background";
+import { FlowingLines } from "../animated/flowing-lines";
+import { PulseRings } from "../animated/pulse-rings";
+import { RisingParticles } from "../animated/rising-particles";
+import { WorldMapImage } from "../world-map-image";
 const stages = [
   {
     id: 1,
@@ -22,7 +27,8 @@ const stages = [
   {
     id: 3,
     title: "Bạn và đối tác tin cậy",
-    description: "Hội nhập sâu rộng, là thành viên có trách nhiệm của cộng đồng quốc tế",
+    description:
+      "Hội nhập sâu rộng, là thành viên có trách nhiệm của cộng đồng quốc tế",
     year: "1986-nay",
   },
 ];
@@ -62,7 +68,45 @@ export function InternationalSolidaritySection() {
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red/5 via-transparent to-transparent" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      {/* Animated Background - Waves */}
+      <AnimatedBackground variant="waves" color="mixed" intensity="medium" />
+
+      {/* Flowing Lines */}
+      <div className="absolute inset-0 opacity-30">
+        <FlowingLines color="gold" direction="horizontal" count={10} />
+      </div>
+
+      {/* Pulse Rings */}
+      <PulseRings
+        color="mixed"
+        position="top-right"
+        size="large"
+        className="opacity-40"
+      />
+      <PulseRings
+        color="gold"
+        position="bottom-left"
+        size="medium"
+        className="opacity-30"
+      />
+
+      {/* Rising Particles */}
+      <RisingParticles color="mixed" count={30} speed="slow" />
+
+      {/* World Map Image Background - Centered */}
+      <div className="relative pointer-events-none">
+        <motion.div
+          className="mx-auto w-full max-w-[1500px] h-[520px]  opacity-25"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 0.25, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5 }}
+        >
+          <WorldMapImage className="w-full mx-auto opacity-90" />
+        </motion.div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10 mt-[25%]">
         <motion.h2
           className="font-serif text-3xl md:text-4xl text-center text-gold mb-6"
           initial={{ opacity: 0, y: 20 }}
@@ -83,25 +127,33 @@ export function InternationalSolidaritySection() {
           Đoàn kết Quốc tế - Nền tảng của sức mạnh thời đại
         </motion.p>
 
-        {/* World Map */}
-        <motion.div
-          className="relative mb-20"
-          style={{ scale: mapScale, opacity: mapOpacity }}
-        >
-          <WorldMap
-            className="w-full h-auto max-h-[50vh]"
-            highlightVietnam={true}
-            showConnections={true}
-            activeConnections={["asia", "africa", "europe", "americas"]}
-          />
-        </motion.div>
-
         {/* Stages Timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gold/50 to-transparent hidden md:block" />
+        <div className="relative z-20">
+          {/* Timeline line (always visible, with fade + glow) */}
+          <div className="pointer-events-none absolute left-1/2 top-0 bottom-0 -translate-x-1/2 z-0">
+            {/* main line */}
+            <div
+              className="h-full w-px bg-gold/45"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+              }}
+            />
+            {/* soft glow */}
+            <div
+              className="absolute inset-0 w-px bg-gold/25 blur-sm"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+              }}
+            />
+          </div>
 
-          <div className="space-y-16 md:space-y-24">
+          <div className="space-y-10 md:space-y-24 relative z-10">
             {stages.map((stage, index) => (
               <motion.div
                 key={stage.id}
@@ -115,7 +167,9 @@ export function InternationalSolidaritySection() {
               >
                 {/* Content */}
                 <div
-                  className={`flex-1 ${index % 2 === 1 ? "md:text-left" : "md:text-right"}`}
+                  className={`flex-1 ${
+                    index % 2 === 1 ? "md:text-left" : "md:text-right"
+                  }`}
                 >
                   <div
                     className={`bg-card border border-gold/30 rounded-xl p-6 md:p-8 hover:border-gold/60 transition-colors ${
@@ -135,7 +189,7 @@ export function InternationalSolidaritySection() {
                 </div>
 
                 {/* Center dot */}
-                <div className="relative">
+                <div className="relative z-20">
                   <motion.div
                     className="w-4 h-4 bg-gold rounded-full"
                     initial={{ scale: 0 }}

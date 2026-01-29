@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { FloatingParticles } from "../animated/floating-particles";
 import { OrbitingElements } from "../animated/orbiting-elements";
+import { AnimatedBackground } from "../animated/animated-background";
+import { FlowingLines } from "../animated/flowing-lines";
+import { RisingParticles } from "../animated/rising-particles";
 
 const nationalPower = [
   "Tinh thần yêu nước",
@@ -32,6 +35,17 @@ export function PowerFormulaSection() {
 
       {/* Background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red/5 via-transparent to-transparent" />
+
+      {/* Animated Background - Grid pattern */}
+      <AnimatedBackground variant="grid" color="mixed" intensity="low" />
+
+      {/* Flowing Lines */}
+      <div className="absolute inset-0 opacity-30">
+        <FlowingLines color="mixed" direction="horizontal" count={8} />
+      </div>
+
+      {/* Rising Particles */}
+      <RisingParticles color="mixed" count={25} speed="medium" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.h2

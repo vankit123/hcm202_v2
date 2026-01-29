@@ -7,6 +7,10 @@ import { FloatingParticles } from "../animated/floating-particles";
 import { AnimatedStars } from "../animated/animated-stars";
 import { VietnamMap } from "../vietnam-map";
 import { WorldMap } from "../world-map";
+import { AnimatedBackground } from "../animated/animated-background";
+import { FlowingLines } from "../animated/flowing-lines";
+import { PulseRings } from "../animated/pulse-rings";
+import { RisingParticles } from "../animated/rising-particles";
 
 export function ConclusionSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,11 +18,8 @@ export function ConclusionSection() {
     target: containerRef,
     offset: ["start end", "end start"],
   });
-
-  const vietnamOpacity = useTransform(scrollYProgress, [0.2, 0.5], [1, 0]);
-  const worldOpacity = useTransform(scrollYProgress, [0.3, 0.6], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.4, 0.7], [50, 0]);
-  const textOpacity = useTransform(scrollYProgress, [0.4, 0.7], [0, 1]);
+const textY = useTransform(scrollYProgress, [0.0, 0.15], [20, 0]);
+const textOpacity = useTransform(scrollYProgress, [0.0, 0.12], [1, 1]);
 
   return (
     <section
@@ -45,33 +46,26 @@ export function ConclusionSection() {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent" />
 
+      {/* Animated Background - Aurora */}
+      <AnimatedBackground variant="aurora" color="mixed" intensity="high" />
+
+      {/* Flowing Lines */}
+      <div className="absolute inset-0 opacity-35">
+        <FlowingLines color="gold" direction="horizontal" count={10} />
+      </div>
+
+      {/* Pulse Rings */}
+      <PulseRings color="gold" position="center" size="large" className="opacity-25" />
+      <PulseRings color="red" position="top-right" size="medium" className="opacity-20" />
+      <PulseRings color="mixed" position="bottom-left" size="medium" className="opacity-20" />
+
+      {/* Rising Particles */}
+      <RisingParticles color="gold" count={40} speed="slow" />
+
       {/* Fixed content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center">
         <div className="relative w-full max-w-6xl mx-auto">
-          {/* Vietnam Map (fades out) */}
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ opacity: vietnamOpacity }}
-          >
-            <VietnamMap
-              className="h-[60vh] w-auto opacity-60"
-              glowColor="#d4a853"
-              showRegions={false}
-            />
-          </motion.div>
-
-          {/* World Map (fades in) */}
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ opacity: worldOpacity }}
-          >
-            <WorldMap
-              className="w-full max-w-4xl h-auto opacity-40"
-              highlightVietnam={true}
-              showConnections={true}
-              activeConnections={["asia", "africa", "europe", "americas"]}
-            />
-          </motion.div>
+ 
 
           {/* Conclusion text */}
           <motion.div

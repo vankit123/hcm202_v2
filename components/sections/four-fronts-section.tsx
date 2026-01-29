@@ -5,6 +5,9 @@ import { useState } from "react";
 import { Users, Globe, Handshake, Shield } from "lucide-react";
 import { FloatingParticles } from "../animated/floating-particles";
 import { PulseRings } from "../animated/pulse-rings";
+import { AnimatedBackground } from "../animated/animated-background";
+import { FlowingLines } from "../animated/flowing-lines";
+import { RisingParticles } from "../animated/rising-particles";
 
 const fronts = [
   {
@@ -54,6 +57,17 @@ export function FourFrontsSection() {
 
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/5 via-transparent to-transparent" />
+
+      {/* Animated Background - Stars */}
+      <AnimatedBackground variant="stars" color="gold" intensity="medium" />
+
+      {/* Flowing Lines */}
+      <div className="absolute inset-0 opacity-25">
+        <FlowingLines color="mixed" direction="diagonal" count={8} />
+      </div>
+
+      {/* Rising Particles */}
+      <RisingParticles color="gold" count={35} speed="medium" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2

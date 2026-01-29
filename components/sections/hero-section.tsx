@@ -5,6 +5,8 @@ import Image from "next/image";
 import { FloatingParticles } from "../animated/floating-particles";
 import { AnimatedStars } from "../animated/animated-stars";
 import { VietnamMap } from "../vietnam-map";
+import { AnimatedBackground } from "../animated/animated-background";
+import { PulseRings } from "../animated/pulse-rings";
 
 export function HeroSection() {
   return (
@@ -37,20 +39,27 @@ export function HeroSection() {
           }}
         />
       </div>
+
+      {/* Aurora Background Effect */}
+      <AnimatedBackground variant="aurora" color="mixed" intensity="medium" />
+
+      {/* Pulse Rings - Center */}
+      <PulseRings color="mixed" position="center" size="large" className="opacity-30" />
       {/* Vietnam Map Background */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center opacity-20"
+        className="absolute inset-0 flex items-center justify-center"
         initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 0.2 }}
+        animate={{ scale: 1, opacity: 0.25 }}
         transition={{ duration: 2, ease: "easeOut" }}
       >
-        <Image
-          src="/assets/vnmap.png"
-          alt="Vietnam Map"
-          width={1000}
-          height={900}
-          className="h-[80vh] w-auto"
-        />
+        <div className="h-[70vh] w-[350px] md:w-[450px] relative">
+          <VietnamMap
+            className="w-full h-full"
+            glowColor="#d4a853"
+            showRegions={true}
+            animated={true}
+          />
+        </div>
       </motion.div>
 
       {/* Content */}

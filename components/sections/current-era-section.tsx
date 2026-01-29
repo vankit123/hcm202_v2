@@ -5,6 +5,10 @@ import Image from "next/image";
 import { TrendingUp, Globe, Award } from "lucide-react";
 import { FloatingParticles } from "../animated/floating-particles";
 import { AnimatedWaves } from "../animated/animated-waves";
+import { AnimatedBackground } from "../animated/animated-background";
+import { FlowingLines } from "../animated/flowing-lines";
+import { PulseRings } from "../animated/pulse-rings";
+import { RisingParticles } from "../animated/rising-particles";
 
 const beforeItems = [
   "Bị cô lập quốc tế",
@@ -49,6 +53,21 @@ export function CurrentEraSection() {
 
       {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold/5 via-transparent to-transparent" />
+
+      {/* Animated Background - Aurora */}
+      <AnimatedBackground variant="aurora" color="gold" intensity="medium" />
+
+      {/* Flowing Lines */}
+      <div className="absolute inset-0 opacity-25">
+        <FlowingLines color="gold" direction="horizontal" count={12} />
+      </div>
+
+      {/* Pulse Rings */}
+      <PulseRings color="gold" position="bottom-right" size="large" className="opacity-35" />
+      <PulseRings color="mixed" position="top-left" size="small" className="opacity-25" />
+
+      {/* Rising Particles */}
+      <RisingParticles color="gold" count={30} speed="medium" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2
