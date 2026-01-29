@@ -7,6 +7,7 @@ interface VietnamMapProps {
   glowColor?: string;
   showRegions?: boolean;
   animated?: boolean;
+  backgroundImage?: string;
 }
 
 export function VietnamMap({
@@ -14,6 +15,7 @@ export function VietnamMap({
   glowColor = "#d4a853",
   showRegions = false,
   animated = true,
+  backgroundImage,
 }: VietnamMapProps) {
   const pathVariants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -52,6 +54,23 @@ export function VietnamMap({
           <stop offset="50%" stopColor={glowColor} stopOpacity="0.8" />
           <stop offset="100%" stopColor={glowColor} stopOpacity="1" />
         </linearGradient>
+        {backgroundImage && (
+          <pattern
+            id="mapImage"
+            patternUnits="userSpaceOnUse"
+            width="200"
+            height="500"
+          >
+            <image
+              href={backgroundImage}
+              x="0"
+              y="0"
+              width="200"
+              height="500"
+              preserveAspectRatio="xMidYMid slice"
+            />
+          </pattern>
+        )}
       </defs>
 
       {/* Main Vietnam outline */}
@@ -80,7 +99,7 @@ export function VietnamMap({
            C64,125 68,110 72,95
            C76,80 82,65 88,50
            C94,35 98,20 100,10 Z"
-        fill="url(#mapGradient)"
+        fill={backgroundImage ? "url(#mapImage)" : "url(#mapGradient)"}
         filter="url(#glow)"
         variants={animated ? pathVariants : undefined}
         style={{ filter: `drop-shadow(0 0 20px ${glowColor})` }}

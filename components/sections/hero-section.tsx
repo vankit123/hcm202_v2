@@ -45,7 +45,13 @@ export function HeroSection() {
         animate={{ scale: 1, opacity: 0.2 }}
         transition={{ duration: 2, ease: "easeOut" }}
       >
-        <VietnamMap className="h-[80vh] w-auto" glowColor="#d4a853" />
+        <Image
+          src="/assets/vnmap.png"
+          alt="Vietnam Map"
+          width={1000}
+          height={900}
+          className="h-[80vh] w-auto"
+        />
       </motion.div>
 
       {/* Content */}
