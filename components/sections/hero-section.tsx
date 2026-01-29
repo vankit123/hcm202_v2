@@ -37,7 +37,6 @@ export function HeroSection() {
           }}
         />
       </div>
-
       {/* Vietnam Map Background */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center opacity-20"
