@@ -8,7 +8,10 @@ interface AnimatedStarsProps {
   className?: string;
 }
 
-export function AnimatedStars({ count = 50, className = "" }: AnimatedStarsProps) {
+export function AnimatedStars({
+  count = 50,
+  className = "",
+}: AnimatedStarsProps) {
   const stars = useMemo(() => {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
@@ -21,7 +24,9 @@ export function AnimatedStars({ count = 50, className = "" }: AnimatedStarsProps
   }, [count]);
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div
+      className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+    >
       {stars.map((star) => (
         <motion.div
           key={star.id}
@@ -37,7 +42,7 @@ export function AnimatedStars({ count = 50, className = "" }: AnimatedStarsProps
             scale: [0.8, 1.2, 0.8],
           }}
           transition={{
-            duration: star.duration,
+            duration: star.duration * 1.3,
             delay: star.delay,
             repeat: Infinity,
             ease: "easeInOut",

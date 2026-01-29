@@ -8,7 +8,9 @@ interface AnimatedWavesProps {
 
 export function AnimatedWaves({ className = "" }: AnimatedWavesProps) {
   return (
-    <div className={`absolute bottom-0 left-0 right-0 h-40 overflow-hidden pointer-events-none ${className}`}>
+    <div
+      className={`absolute bottom-0 left-0 right-0 h-40 overflow-hidden pointer-events-none ${className}`}
+    >
       <svg
         className="absolute bottom-0 w-full h-full"
         viewBox="0 0 1440 320"
@@ -24,7 +26,7 @@ export function AnimatedWaves({ className = "" }: AnimatedWavesProps) {
             ],
           }}
           transition={{
-            duration: 10,
+            duration: 14,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -39,10 +41,10 @@ export function AnimatedWaves({ className = "" }: AnimatedWavesProps) {
             ],
           }}
           transition={{
-            duration: 8,
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 0.5,
+            delay: 0.3,
           }}
         />
       </svg>

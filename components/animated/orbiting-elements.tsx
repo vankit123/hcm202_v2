@@ -14,7 +14,9 @@ export function OrbitingElements({ className = "" }: OrbitingElementsProps) {
   ];
 
   return (
-    <div className={`absolute inset-0 flex items-center justify-center pointer-events-none ${className}`}>
+    <div
+      className={`absolute inset-0 flex items-center justify-center pointer-events-none ${className}`}
+    >
       {orbits.map((orbit, orbitIndex) => (
         <motion.div
           key={orbitIndex}
@@ -25,7 +27,7 @@ export function OrbitingElements({ className = "" }: OrbitingElementsProps) {
           }}
           animate={{ rotate: 360 }}
           transition={{
-            duration: orbit.duration,
+            duration: orbit.duration * 1.2,
             repeat: Infinity,
             ease: "linear",
           }}
@@ -49,8 +51,8 @@ export function OrbitingElements({ className = "" }: OrbitingElementsProps) {
                   scale: [0.8, 1.2, 0.8],
                 }}
                 transition={{
-                  duration: 2,
-                  delay: itemIndex * 0.2,
+                  duration: 3,
+                  delay: itemIndex * 0.18,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
@@ -59,7 +61,7 @@ export function OrbitingElements({ className = "" }: OrbitingElementsProps) {
           })}
         </motion.div>
       ))}
-      
+
       {/* Center glow */}
       <motion.div
         className="absolute w-16 h-16 rounded-full bg-gold/20"
@@ -68,7 +70,7 @@ export function OrbitingElements({ className = "" }: OrbitingElementsProps) {
           opacity: [0.3, 0.6, 0.3],
         }}
         transition={{
-          duration: 3,
+          duration: 4.5,
           repeat: Infinity,
           ease: "easeInOut",
         }}

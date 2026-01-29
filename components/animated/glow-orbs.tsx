@@ -16,7 +16,9 @@ export function GlowOrbs({ className = "" }: GlowOrbsProps) {
   ];
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div
+      className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+    >
       {orbs.map((orb, index) => (
         <motion.div
           key={index}
@@ -39,7 +41,7 @@ export function GlowOrbs({ className = "" }: GlowOrbsProps) {
             y: [0, -20, 0],
           }}
           transition={{
-            duration: 8 + index * 2,
+            duration: 12 + index * 2.5,
             delay: orb.delay,
             repeat: Infinity,
             ease: "easeInOut",

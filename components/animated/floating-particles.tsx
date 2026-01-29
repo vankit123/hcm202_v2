@@ -22,17 +22,14 @@ export function FloatingParticles({
       size: Math.random() * 4 + 2,
       duration: Math.random() * 20 + 15,
       delay: Math.random() * 5,
-      color:
-        color === "mixed"
-          ? Math.random() > 0.5
-            ? "gold"
-            : "red"
-          : color,
+      color: color === "mixed" ? (Math.random() > 0.5 ? "gold" : "red") : color,
     }));
   }, [count, color]);
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div
+      className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+    >
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
@@ -58,7 +55,7 @@ export function FloatingParticles({
             scale: [0.5, 1, 0.5],
           }}
           transition={{
-            duration: particle.duration,
+            duration: particle.duration * 1.2,
             delay: particle.delay,
             repeat: Infinity,
             ease: "linear",

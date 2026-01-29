@@ -7,11 +7,17 @@ interface PulseRingsProps {
   color?: "gold" | "red";
 }
 
-export function PulseRings({ className = "", color = "gold" }: PulseRingsProps) {
-  const ringColor = color === "gold" ? "rgba(212,168,83,0.3)" : "rgba(180,80,80,0.3)";
-  
+export function PulseRings({
+  className = "",
+  color = "gold",
+}: PulseRingsProps) {
+  const ringColor =
+    color === "gold" ? "rgba(212,168,83,0.3)" : "rgba(180,80,80,0.3)";
+
   return (
-    <div className={`absolute inset-0 flex items-center justify-center pointer-events-none ${className}`}>
+    <div
+      className={`absolute inset-0 flex items-center justify-center pointer-events-none ${className}`}
+    >
       {[1, 2, 3, 4].map((ring) => (
         <motion.div
           key={ring}
@@ -26,8 +32,8 @@ export function PulseRings({ className = "", color = "gold" }: PulseRingsProps) 
             opacity: [0.3, 0.1, 0.3],
           }}
           transition={{
-            duration: 4,
-            delay: ring * 0.5,
+            duration: 6,
+            delay: ring * 0.4,
             repeat: Infinity,
             ease: "easeInOut",
           }}

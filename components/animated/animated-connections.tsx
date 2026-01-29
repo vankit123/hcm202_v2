@@ -6,7 +6,9 @@ interface AnimatedConnectionsProps {
   className?: string;
 }
 
-export function AnimatedConnections({ className = "" }: AnimatedConnectionsProps) {
+export function AnimatedConnections({
+  className = "",
+}: AnimatedConnectionsProps) {
   const lines = [
     { x1: "10%", y1: "20%", x2: "30%", y2: "40%" },
     { x1: "30%", y1: "40%", x2: "50%", y2: "30%" },
@@ -49,8 +51,8 @@ export function AnimatedConnections({ className = "" }: AnimatedConnectionsProps
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{
-              duration: 2,
-              delay: index * 0.2,
+              duration: 3.5,
+              delay: index * 0.15,
               repeat: Infinity,
               repeatType: "reverse",
               ease: "easeInOut",
@@ -74,8 +76,8 @@ export function AnimatedConnections({ className = "" }: AnimatedConnectionsProps
             opacity: [0.4, 1, 0.4],
           }}
           transition={{
-            duration: 2,
-            delay: index * 0.15,
+            duration: 3,
+            delay: index * 0.12,
             repeat: Infinity,
             ease: "easeInOut",
           }}
