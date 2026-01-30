@@ -2,14 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { VietnamMap } from "../vietnam-map";
-import { Factory, Wheat, BookOpen } from "lucide-react";
+import { AnimatedBackground } from "../animated/animated-background";
 import { FloatingParticles } from "../animated/floating-particles";
 import { OrbitingElements } from "../animated/orbiting-elements";
-import { AnimatedBackground } from "../animated/animated-background";
-import { FlowingLines } from "../animated/flowing-lines";
 import { PulseRings } from "../animated/pulse-rings";
 import { RisingParticles } from "../animated/rising-particles";
+import { VietnamMap } from "../vietnam-map";
 
 export function NationalUnitySection() {
   return (

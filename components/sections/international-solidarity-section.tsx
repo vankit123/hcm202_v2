@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
+import { AnimatedBackground } from "../animated/animated-background";
 import { AnimatedConnections } from "../animated/animated-connections";
 import { FloatingParticles } from "../animated/floating-particles";
-import { AnimatedBackground } from "../animated/animated-background";
 import { FlowingLines } from "../animated/flowing-lines";
 import { PulseRings } from "../animated/pulse-rings";
 import { RisingParticles } from "../animated/rising-particles";
@@ -40,13 +40,7 @@ const stages = [
 
 export function InternationalSolidaritySection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
 
-  const mapScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
-  const mapOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
 
   return (
     <section

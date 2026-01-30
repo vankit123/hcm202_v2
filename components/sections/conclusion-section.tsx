@@ -1,16 +1,15 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { FloatingParticles } from "../animated/floating-particles";
+import { useEffect, useRef, useState } from "react";
 import { AnimatedStars } from "../animated/animated-stars";
+import { FloatingParticles } from "../animated/floating-particles";
 
 import { AnimatedBackground } from "../animated/animated-background";
 import { FlowingLines } from "../animated/flowing-lines";
 import { PulseRings } from "../animated/pulse-rings";
 import { RisingParticles } from "../animated/rising-particles";
-import { useInView } from "framer-motion";
 
 interface ConclusionSectionProps {
   isActive: boolean;
@@ -29,10 +28,7 @@ export function ConclusionSection({ isActive }: ConclusionSectionProps) {
       setThankYouDone(false);
     }
   }, [isActive]);
-  const isInView = useInView(triggerRef, {
-    once: true,
-    margin: "-30% 0px -30% 0px", // ⬅️ chỉ trigger khi vào sâu
-  });
+ 
   const [thankYouDone, setThankYouDone] = useState(false);
   const thankYouLines = [
     "Nhóm chúng mình xin trân trọng cảm ơn các bạn đã lắng nghe phần trình bày.",

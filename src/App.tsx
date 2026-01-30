@@ -1,22 +1,18 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
-import { AnimatedGradientBg } from "../components/animated/animated-gradient-bg";
-import { HeroSection } from "../components/sections/hero-section";
-import { PowerFormulaSection } from "../components/sections/power-formula-section";
-import { NationalUnitySection } from "../components/sections/national-unity-section";
-import { InternationalSolidaritySection } from "../components/sections/international-solidarity-section";
-import { FourFrontsSection } from "../components/sections/four-fronts-section";
-import { PrinciplesSection } from "../components/sections/principles-section";
-import { CurrentEraSection } from "../components/sections/current-era-section";
-import { LessonsSection } from "../components/sections/lessons-section";
+import GoldenCursor from "../components/GoldenCursor";
 import { ConclusionSection } from "../components/sections/conclusion-section";
-import { UnityPrinciplesSection } from "../components/sections/unity-principles-section";
 import { FourFrontsUnitySection } from "../components/sections/four-fronts-unity-section";
+import { HeroSection } from "../components/sections/hero-section";
+import { InternationalSolidaritySection } from "../components/sections/international-solidarity-section";
 import { NationalUnityIntegrationSection } from "../components/sections/national-unity-integration-section";
+import { NationalUnitySection } from "../components/sections/national-unity-section";
+import { PowerFormulaSection } from "../components/sections/power-formula-section";
 import { UnityIntegrationConclusionSection } from "../components/sections/unity-integration-conclusion-section";
+import { UnityPrinciplesSection } from "../components/sections/unity-principles-section";
 const sections = [
   { id: "hero", label: "Mở đầu" },
   { id: "power", label: "Đại đoàn kết & Công thức " },
@@ -83,10 +79,10 @@ export default function Home() {
   };
 
   return (
-    <main ref={containerRef} className="relative bg-background overflow-x-hidden">
+    <main ref={containerRef} className="relative bg-background ">
       {/* Background */}
       {/* <AnimatedGradientBg /> */}
-
+    <GoldenCursor />
       <AnimatePresence>
         {showNav && (
           <motion.nav

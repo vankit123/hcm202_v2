@@ -125,7 +125,7 @@ export function WorldMapImage({
         {points
           .filter((p) => activeConnections.includes(p.id))
           .map((p) => {
-            const c = labelColor[p.id] || "#ffffff";
+             labelColor[p.id] || "#ffffff";
             return (
               <g key={p.id}>
                 {/* dot vẫn vàng hoặc bạn đổi theo c cũng được */}

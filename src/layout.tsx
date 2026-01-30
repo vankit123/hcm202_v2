@@ -1,18 +1,8 @@
-import React from "react";
-import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import type { Metadata, Viewport } from "next";
+import React from "react";
 import "./globals.css";
-const _cormorant = Cormorant_Garamond({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-serif",
-});
 
-const _inter = Inter({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-sans",
-});
 
 export const metadata: Metadata = {
   title: "Tư tưởng Hồ Chí Minh về Đoàn kết Quốc tế và Đại đoàn kết Dân tộc",

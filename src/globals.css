@@ -103,6 +103,9 @@
 html {
   scroll-behavior: auto;
 }
+body {
+  cursor: none;
+}
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -117,4 +120,9 @@ html {
 ::selection {
   background: oklch(0.75 0.15 85 / 0.3);
   color: var(--foreground);
+}
+*,
+*::before,
+*::after {
+  cursor: none !important;
 }
