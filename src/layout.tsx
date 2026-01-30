@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Tư tưởng Hồ Chí Minh về Đoàn kết Quốc tế và Đại đoàn kết Dân tộc",
   description:
     "Infographic về tư tưởng Hồ Chí Minh về đoàn kết quốc tế và đại đoàn kết dân tộc - nền tảng để Việt Nam hội nhập bền vững với thế giới.",
-  generator: "v0.app",
+  generator: "HCM202",
   icons: {
     icon: [
       {

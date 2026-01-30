@@ -1,26 +1,51 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FloatingParticles } from "../animated/floating-particles";
 import { AnimatedStars } from "../animated/animated-stars";
-import { VietnamMap } from "../vietnam-map";
-import { WorldMap } from "../world-map";
+
 import { AnimatedBackground } from "../animated/animated-background";
 import { FlowingLines } from "../animated/flowing-lines";
 import { PulseRings } from "../animated/pulse-rings";
 import { RisingParticles } from "../animated/rising-particles";
+import { useInView } from "framer-motion";
 
-export function ConclusionSection() {
+interface ConclusionSectionProps {
+  isActive: boolean;
+}
+export function ConclusionSection({ isActive }: ConclusionSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start 20%", "center center"],
   });
-const textY = useTransform(scrollYProgress, [0.0, 0.15], [20, 0]);
-const textOpacity = useTransform(scrollYProgress, [0.0, 0.12], [1, 1]);
-
+  const textY = useTransform(scrollYProgress, [0.0, 0.15], [20, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0.0, 0.12], [1, 1]);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!isActive) {
+      setThankYouDone(false);
+    }
+  }, [isActive]);
+  const isInView = useInView(triggerRef, {
+    once: true,
+    margin: "-30% 0px -30% 0px", // ⬅️ chỉ trigger khi vào sâu
+  });
+  const [thankYouDone, setThankYouDone] = useState(false);
+  const thankYouLines = [
+    "Nhóm chúng mình xin trân trọng cảm ơn các bạn đã lắng nghe phần trình bày.",
+    "Cảm ơn cô đã luôn tận tình giảng dạy,",
+    "truyền đạt những giá trị lý luận sâu sắc và định hướng tư duy đúng đắn",
+    "trong quá trình học tập môn Tư tưởng Hồ Chí Minh.",
+    "",
+    "Bài thuyết trình là kết quả của sự tìm hiểu, trao đổi và nỗ lực chung",
+    "của cả nhóm. Dù còn nhiều hạn chế, chúng em rất mong nhận được",
+    "những ý kiến đóng góp quý báu từ cô để bài làm được hoàn thiện hơn.",
+    "",
+    "Chúng em xin chân thành cảm ơn!",
+  ];
   return (
     <section
       ref={containerRef}
@@ -55,9 +80,24 @@ const textOpacity = useTransform(scrollYProgress, [0.0, 0.12], [1, 1]);
       </div>
 
       {/* Pulse Rings */}
-      <PulseRings color="gold" position="center" size="large" className="opacity-25" />
-      <PulseRings color="red" position="top-right" size="medium" className="opacity-20" />
-      <PulseRings color="mixed" position="bottom-left" size="medium" className="opacity-20" />
+      <PulseRings
+        color="gold"
+        position="center"
+        size="large"
+        className="opacity-25"
+      />
+      <PulseRings
+        color="red"
+        position="top-right"
+        size="medium"
+        className="opacity-20"
+      />
+      <PulseRings
+        color="mixed"
+        position="bottom-left"
+        size="medium"
+        className="opacity-20"
+      />
 
       {/* Rising Particles */}
       <RisingParticles color="gold" count={40} speed="slow" />
@@ -65,77 +105,111 @@ const textOpacity = useTransform(scrollYProgress, [0.0, 0.12], [1, 1]);
       {/* Fixed content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center">
         <div className="relative w-full max-w-6xl mx-auto">
- 
-
           {/* Conclusion text */}
+          {/* Thank you text */}
           <motion.div
             className="relative z-10 text-center px-4"
             style={{ y: textY, opacity: textOpacity }}
           >
-            <motion.div
+            <motion.h2
+              className="font-serif text-3xl tracking-widest text-gold-dim uppercase mb-10"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <h2 className="font-serif text-lg md:text-xl tracking-widest text-gold-dim uppercase mb-8">
-                Kết luận
-              </h2>
+              Lời cảm ơn
+            </motion.h2>
 
-              <blockquote className="relative max-w-4xl mx-auto">
-                <span className="absolute -top-6 -left-2 md:-left-6 text-5xl md:text-6xl text-gold/20 font-serif">
-                  {'"'}
-                </span>
-                <p className="font-serif text-2xl md:text-4xl lg:text-5xl text-gold leading-tight text-balance">
-                  Tư tưởng Hồ Chí Minh về đoàn kết quốc tế là nền tảng để Việt
-                  Nam hội nhập bền vững với thế giới
-                </p>
-                <span className="absolute -bottom-6 -right-2 md:-right-6 text-5xl md:text-6xl text-gold/20 font-serif">
-                  {'"'}
-                </span>
-              </blockquote>
+            {/* Animated thank-you text – typewriter */}
+            <motion.div
+              className="max-w-4xl mx-auto space-y-6"
+              initial={{ opacity: 1 }}
+              ref={triggerRef}
+            >
+              {thankYouLines.map((line, lineIndex) => {
+                let baseDelay = lineIndex * 1.4;
 
-              <motion.div
-                className="mt-16 flex flex-wrap justify-center gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <div className="px-6 py-3 bg-card/50 border border-gold/30 rounded-full">
-                  <span className="text-sm text-muted-foreground">
-                    Đoàn kết
-                  </span>
-                </div>
-                <div className="px-6 py-3 bg-card/50 border border-gold/30 rounded-full">
-                  <span className="text-sm text-muted-foreground">Tự lực</span>
-                </div>
-                <div className="px-6 py-3 bg-card/50 border border-gold/30 rounded-full">
-                  <span className="text-sm text-muted-foreground">
-                    Hội nhập
-                  </span>
-                </div>
-                <div className="px-6 py-3 bg-card/50 border border-gold/30 rounded-full">
-                  <span className="text-sm text-muted-foreground">
-                    Phát triển
-                  </span>
-                </div>
-              </motion.div>
+                return (
+                  <p
+                    key={lineIndex}
+                    className="font-serif text-lg md:text-2xl text-gold leading-relaxed"
+                  >
+                    {line.split("").map((char, charIndex) => {
+                      const isLastLine = lineIndex === thankYouLines.length - 1;
+                      const isLastChar = charIndex === line.length - 1;
+
+                      return (
+                        <motion.span
+                          initial={{ opacity: 0 }}
+                          animate={isActive ? { opacity: 1 } : { opacity: 0 }}
+                          transition={{
+                            duration: 0.12,
+                            delay: baseDelay + charIndex * 0.045,
+                            ease: "easeOut",
+                          }}
+                          onAnimationComplete={() => {
+                            if (isLastLine && isLastChar && isActive) {
+                              setThankYouDone(true);
+                            }
+                          }}
+                        >
+                          {char === " " ? "\u00A0" : char}
+                        </motion.span>
+                      );
+                    })}
+                  </p>
+                );
+              })}
             </motion.div>
+            {thankYouDone && (
+              <motion.div
+                className="mt-16"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.4,
+                    },
+                  },
+                }}
+              >
+                <motion.p
+                  className="font-serif text-base md:text-lg tracking-widest text-gold-dim uppercase mb-6"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1 },
+                  }}
+                >
+                  Nhóm thực hiện
+                </motion.p>
+
+                <motion.ul className="space-y-3">
+                  {[
+                    "Văn Kính Kiệt",
+                    "Lê Hữu Nghĩa",
+                    "Cao Thế Quân",
+                    "Nguyễn Quốc Sơn",
+                    "Hoàng Vũ",
+                  ].map((name, index) => (
+                    <motion.li
+                      key={index}
+                      className="font-serif text-lg md:text-xl text-gold"
+                      variants={{
+                        hidden: { opacity: 0, y: 10 },
+                        visible: { opacity: 1, y: 0 },
+                      }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                      {name}
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </motion.div>
+            )}
           </motion.div>
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="absolute bottom-0 left-0 right-0 py-8 text-center">
-        <motion.p
-          className="text-sm text-muted-foreground"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          Bài thuyết trình Lý luận Chính trị
-        </motion.p>
       </div>
     </section>
   );

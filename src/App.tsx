@@ -13,58 +13,66 @@ import { PrinciplesSection } from "../components/sections/principles-section";
 import { CurrentEraSection } from "../components/sections/current-era-section";
 import { LessonsSection } from "../components/sections/lessons-section";
 import { ConclusionSection } from "../components/sections/conclusion-section";
-import { DragonBackground } from "../components/3d/DragonBackground";
-
-
-
-
+import { UnityPrinciplesSection } from "../components/sections/unity-principles-section";
+import { FourFrontsUnitySection } from "../components/sections/four-fronts-unity-section";
+import { NationalUnityIntegrationSection } from "../components/sections/national-unity-integration-section";
+import { UnityIntegrationConclusionSection } from "../components/sections/unity-integration-conclusion-section";
 const sections = [
   { id: "hero", label: "Mở đầu" },
-  { id: "power", label: "Công thức" },
-  { id: "unity", label: "Đoàn kết" },
+  { id: "power", label: "Đại đoàn kết & Công thức " },
+  { id: "four-fronts-unity", label: "Các mặt trận" },
+  { id: "unity-principles", label: "Nguyên tắc đoàn kết" },
   { id: "world", label: "Quốc tế" },
-  { id: "fronts", label: "Mặt trận" },
-  { id: "principles", label: "Nguyên tắc" },
-  { id: "era", label: "Đổi mới" },
-  { id: "lessons", label: "Bài học" },
+  { id: "unity", label: "Xây dựng khối đại đoàn kết" },
+  { id: "unity-integration", label: "Đoàn kết toàn dân & Bài học" },
   { id: "conclusion", label: "Kết luận" },
+  { id: "thankyou", label: "Lời tri ân" },
 ];
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("hero");
   const [showNav, setShowNav] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  /* =========================
+     Scroll: progress + showNav
+     ========================= */
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(docHeight > 0 ? scrollY / docHeight : 0);
-      setShowNav(scrollY > 100);
-
-      // Determine active section
-      const sectionElements = sections.map((s) => ({
-        id: s.id,
-        element: document.getElementById(s.id),
-      }));
-
-      for (let i = sectionElements.length - 1; i >= 0; i--) {
-        const el = sectionElements[i].element;
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= window.innerHeight / 2) {
-            setActiveSection(sectionElements[i].id);
-            break;
-          }
-        }
-      }
+      setShowNav(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  /* =========================
+     Active section observer
+     ========================= */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -50% 0px", // section vào giữa màn hình
+        threshold: 0.1,
+      },
+    );
+
+    sections.forEach((section) => {
+      const el = document.getElementById(section.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -75,10 +83,10 @@ export default function Home() {
   };
 
   return (
-    <main ref={containerRef} className="relative bg-background">
-      {/* Animated background gradient */}
-      <AnimatedGradientBg />
-      {/* Navigation dots */}
+    <main ref={containerRef} className="relative bg-background overflow-x-hidden">
+      {/* Background */}
+      {/* <AnimatedGradientBg /> */}
+
       <AnimatePresence>
         {showNav && (
           <motion.nav
@@ -105,6 +113,7 @@ export default function Home() {
                 >
                   {section.label}
                 </span>
+
                 <motion.div
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     activeSection === section.id
@@ -119,14 +128,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Progress bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-0.5 bg-gold z-50 origin-left"
-        style={{
-          scaleX: scrollProgress,
-        }}
-      />
-
       {/* Sections */}
       <div id="hero">
         <HeroSection />
@@ -135,33 +136,34 @@ export default function Home() {
       <div id="power">
         <PowerFormulaSection />
       </div>
-
-      <div id="unity">
-        <NationalUnitySection />
+      <div id="four-fronts-unity">
+        <FourFrontsUnitySection />
+      </div>
+      <div id="unity-principles">
+        <UnityPrinciplesSection />
       </div>
 
       <div id="world">
         <InternationalSolidaritySection />
       </div>
 
-      <div id="fronts">
-        <FourFrontsSection />
+      <div id="unity">
+        <NationalUnitySection />
       </div>
 
-      <div id="principles">
-        <PrinciplesSection />
-      </div>
-
-      <div id="era">
-        <CurrentEraSection />
-      </div>
-
-      <div id="lessons">
-        <LessonsSection />
+      <div id="unity-integration">
+        <NationalUnityIntegrationSection />
       </div>
 
       <div id="conclusion">
-        <ConclusionSection />
+        <UnityIntegrationConclusionSection />
+      </div>
+
+      {/* Spacer ngăn trigger sớm */}
+      <div className="h-[60vh]" />
+
+      <div id="thankyou">
+        <ConclusionSection isActive={activeSection === "thankyou"} />
       </div>
     </main>
   );

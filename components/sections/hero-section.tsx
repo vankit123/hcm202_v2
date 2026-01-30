@@ -88,7 +88,7 @@ export function HeroSection() {
               {'"'}
             </span>
             <p className="font-serif text-3xl md:text-5xl lg:text-6xl text-gold leading-tight text-balance">
-              Cách mạng Việt Nam là một bộ phận của cách mạng thế giới
+              Tư tưởng Hồ Chí Minh về đại đoàn kết toàn dân tộc và đoàn kết quốc tế
             </p>
             <span className="absolute -bottom-8 -right-4 text-6xl text-gold/30 font-serif">
               {'"'}
@@ -101,7 +101,7 @@ export function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
           >
-            — Hồ Chí Minh
+            — Hồ Chí Minh —
           </motion.p>
         </motion.div>
 

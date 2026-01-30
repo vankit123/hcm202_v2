@@ -28,9 +28,9 @@ type Marker = {
 };
 
 const MARKERS: Marker[] = [
-  { id: "hanoi", label: "Hà Nội", x: 51.12, y: 23.29, kind: "city" },
-  { id: "danang", label: "Đà Nẵng", x: 57.62, y: 50.49, kind: "city" },
-  { id: "hcm", label: "TP.HCM", x: 48.34, y: 79.3, kind: "city" },
+  { id: "hanoi", label: "Hà Nội", x: 45, y: 23.29, kind: "city" },
+  { id: "danang", label: "Đà Nẵng", x: 55, y: 50.49, kind: "city" },
+  { id: "hcm", label: "TP.HCM", x: 51, y: 79.3, kind: "city" },
   { id: "hoangsa", label: "Hoàng Sa", x: 68.54, y: 38.62, kind: "island" },
   { id: "truongsa", label: "Trường Sa", x: 76.3, y: 68.01, kind: "island" },
 ];

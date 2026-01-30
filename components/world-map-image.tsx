@@ -7,26 +7,26 @@ type Point = { id: string; label: string; x: number; y: number };
 const points: Point[] = [
   { id: "americas", label: "Châu Mỹ", x: 22, y: 42 },
   { id: "europe", label: "Châu Âu", x: 55, y: 30 },
-  { id: "africa", label: "Châu Phi", x: 52, y: 55 },
+  { id: "africa", label: "Châu Phi", x: 56, y: 55 },
   { id: "asia", label: "Châu Á", x: 73, y: 40 },
-  { id: "australia", label: "Châu Úc", x: 82, y: 74 },
+  { id: "australia", label: "Châu Úc", x: 84, y: 60 },
 ];
 
-const vietnam = { x: 73.5, y: 45 };
+const vietnam = { x: 78, y: 47.5 };
 
 // 🎨 MÀU CHỮ theo từng khu vực
 const labelColor: Record<string, string> = {
-  vietnam: "#ffffff",     // trắng cho VIỆT NAM
-  asia: "#ffffff",        // teal
-  europe: "#ffffff",      // blue
-  africa: "#ffffff",      // orange
-  americas: "#ffffff",    // purple
-  australia: "#ffffff",   // green
+  vietnam: "#ffffff", // trắng cho VIỆT NAM
+  asia: "#ffffff", // teal
+  europe: "#ffffff", // blue
+  africa: "#ffffff", // orange
+  americas: "#ffffff", // purple
+  australia: "#ffffff", // green
 };
 
 // (tuỳ chọn) màu line / dot vẫn vàng cho “brand”
 const GOLD = "#d4a853";
-
+const BRIGHT_TEXT = "#fffbe6";
 interface Props {
   className?: string;
   showConnections?: boolean;
@@ -44,7 +44,7 @@ export function WorldMapImage({
         src="/images/world-map.jpg"
         alt="World map"
         className="absolute inset-0 w-full h-full object-contain
-             brightness-[1.25] contrast-[1.05] saturate-[1.15]"
+             brightness-[1.28] contrast-[1.05] saturate-[1.15]"
         draggable={false}
       />
 
@@ -90,7 +90,13 @@ export function WorldMapImage({
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <circle cx={vietnam.x} cy={vietnam.y} r="1.0" fill={GOLD} filter="url(#glow)" />
+          <circle
+            cx={vietnam.x}
+            cy={vietnam.y}
+            r="1.0"
+            fill={GOLD}
+            filter="url(#glow)"
+          />
           <motion.circle
             cx={vietnam.x}
             cy={vietnam.y}
@@ -102,12 +108,14 @@ export function WorldMapImage({
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
           />
           <text
-            x={vietnam.x}
+            x={vietnam.x - 4.5}
             y={vietnam.y - 2.5}
-            fill={labelColor.vietnam}
-            fontSize="2.2"
-            textAnchor="middle"
+            fill={BRIGHT_TEXT}
+            fontSize="2.4"
             fontWeight="800"
+            stroke="#000000"
+            strokeWidth="0.25"
+            paintOrder="stroke"
           >
             VIỆT NAM
           </text>
@@ -121,14 +129,23 @@ export function WorldMapImage({
             return (
               <g key={p.id}>
                 {/* dot vẫn vàng hoặc bạn đổi theo c cũng được */}
-                <circle cx={p.x} cy={p.y} r="0.85" fill={GOLD} opacity="0.95" filter="url(#glow)" />
+                <circle
+                  cx={p.x}
+                  cy={p.y}
+                  r="0.85"
+                  fill={GOLD}
+                  opacity="0.95"
+                  filter="url(#glow)"
+                />
                 <text
-                  x={p.x}
+                  x={p.x - 4.5}
                   y={p.y - 2.2}
-                  fill={c}
-                  fontSize="2.0"
-                  textAnchor="middle"
-                  fontWeight="700"
+                  fill={BRIGHT_TEXT}
+                  fontSize="2.4"
+                  fontWeight="800"
+                  stroke="#000000"
+                  strokeWidth="0.25"
+                  paintOrder="stroke"
                 >
                   {p.label}
                 </text>

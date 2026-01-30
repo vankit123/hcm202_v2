@@ -100,20 +100,14 @@
     @apply bg-background text-foreground;
   }
 }
-
+html {
+  scroll-behavior: auto;
+}
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gold-dim);
-  border-radius: 3px;
-}
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold);
