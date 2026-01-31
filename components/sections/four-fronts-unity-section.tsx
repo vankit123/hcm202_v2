@@ -23,7 +23,7 @@ const fronts = [
   {
     id: "viet-lao",
     icon: Handshake,
-    title: "Liên minh Việt – Lào – Campuchia",
+    title: "Liên minh Việt – Miên - Lào",
     description:
       "Phối hợp, giúp đỡ lẫn nhau, cùng chiến đấu và giành thắng lợi trước kẻ thù chung.",
     image: "/images/viet-mien-lao.jpg",
